@@ -59,7 +59,7 @@ async function getCSRF() {
 let remaining = projectIds.length
 projectIds.forEach(async (id) => {
     const point = await (
-        await fetch("http://localhost:5218/pointfor/" + id)
+        await fetch("http://som-map.jmeow.hackclub.app/pointfor/" + id)
     ).text()
     await fetch(
         "https://summer.hackclub.com/projects/" + id + "/update_coordinates",
