@@ -78,7 +78,7 @@ projectIds.forEach(async (id) => {
     remaining--
     if (remaining === 0) {
         console.log(
-            "Done. Thanks for contributing to the map art, come back again sometime!"
+            "Done. Thanks for contributing to the map art, come back again sometime! Also you may be added to the @som-map-botters user group, feel free to leave if you want to."
         )
     }
 })
