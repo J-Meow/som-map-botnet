@@ -23,7 +23,21 @@ try {
     projectIds = new Array(
         ...doc.querySelectorAll('[data-map-target="placeableProjects"] div')
     ).map((x) => x.getAttribute("data-project-id")!)
-    console.log(projectIds)
+    const mapData = JSON.parse(
+        doc
+            .querySelector('[data-controller="map"]')
+            ?.getAttribute("data-map-projects-value")!
+    )
+    const userId = parseInt(
+        doc
+            .querySelector('[data-controller="map"]')
+            ?.getAttribute("data-map-user-id-value")!
+    )
+    projectIds.push(
+        ...mapData
+            .filter((x: { user_id: number }) => x.user_id == userId)
+            .map((x: { id: number }) => x.id.toString())
+    )
 } catch (_err) {
     console.log("Invalid session")
     Deno.exit(1)
