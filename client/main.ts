@@ -42,6 +42,7 @@ async function getCSRF() {
     const doc = new DOMParser().parseFromString(htmlBody, "text/html")
     return doc.querySelector('meta[name="csrf-token"]')!.getAttribute("content")
 }
+let remaining = projectIds.length
 projectIds.forEach(async (id) => {
     const point = await (
         await fetch("http://localhost:5218/pointfor/" + id)
@@ -60,4 +61,10 @@ projectIds.forEach(async (id) => {
         }
     )
     console.log("Moved project " + id + " to " + point)
+    remaining--
+    if (remaining === 0) {
+        console.log(
+            "Done. Thanks for contributing to the map art, come back again sometime!"
+        )
+    }
 })
